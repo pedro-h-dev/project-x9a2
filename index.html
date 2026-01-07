@@ -3,61 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>Para Lívia ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
-      padding: 0;
-      height: 100vh;
+      min-height: 100vh;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       display: flex;
       justify-content: center;
       align-items: center;
+      font-family: Arial, sans-serif;
       overflow: hidden;
-      font-family: 'Arial', sans-serif;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
       border-radius: 20px;
+      max-width: 420px;
+      width: 90%;
       text-align: center;
-      max-width: 500px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       z-index: 2;
     }
 
     h1 {
       color: #ff4d6d;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     p {
       color: #444;
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.6;
     }
 
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 15px;
+    }
+
     .heart {
-      color: #ff4d6d;
-      font-size: 28px;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1); }
-    }
-
-    .floating-heart {
       position: absolute;
       color: #ff4d6d;
       font-size: 20px;
-      animation: floatUp 6s linear infinite;
+      animation: float 6s linear infinite;
       opacity: 0.7;
     }
 
-    @keyframes floatUp {
+    @keyframes float {
       0% {
         transform: translateY(100vh) scale(0.8);
         opacity: 0;
@@ -74,65 +84,58 @@
 </head>
 <body>
 
-  <div class="card">
-    <h1>Lívia ❤️</h1>
-    <p>
-      Eu só queria te dizer que você é uma das melhores partes da minha vida.
-      Seu sorriso muda meu dia, sua presença acalma meu coração
-      e o seu amor me faz querer ser alguém melhor todos os dias.
-    </p>
-    <p>
-      Obrigado por estar comigo, por acreditar em mim
-      e por fazer meu mundo mais bonito só por existir.
-    </p>
-    <p class="heart">Eu te amo 💖</p>
+  <!-- LOGIN -->
+  <div class="card" id="login">
+    <h2>🔐 Área Secreta</h2>
+    <p>Digite a senha ❤️</p>
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="entrar()">Entrar</button>
   </div>
 
-  <!-- Corações flutuando -->
+  <!-- CONTEÚDO -->
+  <div class="card" id="conteudo" style="display:none;">
+    <h1>Lívia ❤️</h1>
+
+    <p>
+      Eu só queria te lembrar o quanto você é especial pra mim.
+      Seu sorriso muda meus dias, sua presença acalma meu coração
+      e estar com você faz tudo valer a pena.
+    </p>
+
+    <p><strong>Eu te amo 💖</strong></p>
+
+    <!-- PLAYER NATIVO (ANDROID FRIENDLY) -->
+    <audio controls>
+      <source src="musica.mp3.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </div>
+
   <script>
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('floating-heart');
-      heart.innerHTML = '❤️';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-      heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+    function entrar() {
+      const senhaCorreta = "livia123"; // 🔴 MUDE AQUI
+      const senha = document.getElementById("senha").value;
 
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 7000);
+      if (senha === senhaCorreta) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("conteudo").style.display = "block";
+      } else {
+        alert("Senha incorreta 💔");
+      }
     }
 
-    setInterval(createHeart, 300);
-  </script>
-<audio id="musica" preload="auto">
-  <source src="musica.mp3.mp3" type="audio/mpeg">
-</audio>
+    // corações flutuando
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+      document.body.appendChild(heart);
 
-<button onclick="tocarMusica()" 
-  style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 14px 26px;
-    border: none;
-    border-radius: 30px;
-    background: #ff4d6d;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  ">
-  ▶️ Tocar música ❤️
-<audio controls>
-  <source src="musica.mp3" type="audio/mpeg">
-  Seu navegador não suporta áudio.
-</audio>
+      setTimeout(() => heart.remove(), 7000);
+    }, 300);
+  </script>
 
 </body>
-
 </html>
-
