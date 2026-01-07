@@ -2,30 +2,28 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Para Lívia ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lívia ❤️</title>
 
   <style>
     body {
       margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #ffb6c1, #ffc0cb);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
+      min-height: 100vh;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
+      background: #fff;
       border-radius: 20px;
-      max-width: 420px;
+      padding: 25px;
+      max-width: 400px;
       width: 90%;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      z-index: 2;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
     h1 {
@@ -34,66 +32,21 @@
     }
 
     p {
-      color: #444;
-      font-size: 17px;
-      line-height: 1.6;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 12px;
-      border: none;
       font-size: 16px;
+      color: #333;
+      line-height: 1.5;
     }
 
-    button {
-      background: #ff4d6d;
-      color: white;
-      cursor: pointer;
-    }
-
-    audio {
+    video {
       width: 100%;
-      margin-top: 15px;
-    }
-
-    .heart {
-      position: absolute;
-      color: #ff4d6d;
-      font-size: 20px;
-      animation: float 6s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.8);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      margin-top: 20px;
+      border-radius: 12px;
     }
   </style>
 </head>
+
 <body>
-
-  <!-- LOGIN -->
-  <div class="card" id="login">
-    <h2>🔐 Área Secreta</h2>
-    <p>Digite a senha ❤️</p>
-    <input type="password" id="senha" placeholder="Senha">
-    <button onclick="entrar()">Entrar</button>
-  </div>
-
-  <!-- CONTEÚDO -->
-  <div class="card" id="conteudo" style="display:none;">
+  <div class="card">
     <h1>Lívia ❤️</h1>
 
     <p>
@@ -104,41 +57,10 @@
 
     <p><strong>Eu te amo 💖</strong></p>
 
-    <!-- PLAYER NATIVO (ANDROID FRIENDLY) -->
-<video controls playsinline width="100%">
-  <source src="video.mp4" type="video/mp4">
-  Seu navegador não suporta vídeo.
-</video>
-
-  <script>
-    function entrar() {
-      const senhaCorreta = "livia123"; // 🔴 MUDE AQUI
-      const senha = document.getElementById("senha").value;
-
-      if (senha === senhaCorreta) {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("conteudo").style.display = "block";
-      } else {
-        alert("Senha incorreta 💔");
-      }
-    }
-
-    // corações flutuando
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 7000);
-    }, 300);
-  </script>
-
+    <video controls playsinline>
+      <source src="videoo.mp4.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo.
+    </video>
+  </div>
 </body>
 </html>
-
-
-
-
