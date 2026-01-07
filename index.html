@@ -14,6 +14,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      overflow: hidden;
     }
 
     .card {
@@ -24,28 +25,42 @@
       width: 90%;
       text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 2;
     }
 
     h1 {
       color: #ff4d6d;
-      margin-bottom: 15px;
     }
 
-    p {
-      font-size: 16px;
-      color: #333;
-      line-height: 1.5;
-    }
-
-    video {
+    video, audio {
       width: 100%;
-      margin-top: 20px;
-      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: rgba(255, 77, 109, 0.9);
+      animation: subir 6s linear forwards;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <div class="card">
     <h1>Lívia ❤️</h1>
 
@@ -57,7 +72,7 @@
 
     <p><strong>Eu te amo 💖</strong></p>
 
-   <video controls muted playsinline>
+    <video controls muted playsinline>
   <source src="videoo.mp4.mp4" type="video/mp4">
 </video>
 
@@ -66,48 +81,23 @@
 </audio>
   </div>
 
-<style>
-  .heart {
-    position: fixed;
-    bottom: -20px;
-    font-size: 20px;
-    color: rgba(255, 77, 109, 0.8);
-    animation: floatUp 6s linear forwards;
-    pointer-events: none;
-  }
+  <script>
+    function criarCoracao() {
+      const coracao = document.createElement("div");
+      coracao.className = "heart";
+      coracao.innerHTML = "❤️";
+      coracao.style.left = Math.random() * 100 + "vw";
+      coracao.style.fontSize = (16 + Math.random() * 20) + "px";
 
-  @keyframes floatUp {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 1;
+      document.body.appendChild(coracao);
+
+      setTimeout(() => {
+        coracao.remove();
+      }, 6000);
     }
-    100% {
-      transform: translateY(-100vh) scale(1.5);
-      opacity: 0;
-    }
-  }
-</style>
 
-<script>
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
+    setInterval(criarCoracao, 500);
+  </script>
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (14 + Math.random() * 20) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
-  }
-
-  setInterval(createHeart, 400);
-</script>
-  
 </body>
 </html>
-
-
